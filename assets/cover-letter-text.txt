@@ -1,0 +1,33 @@
+Howdy,
+
+My name is Kevin Hubert, and I'm a seasoned frontend web developer from Austin, Texas. I'm
+interested in a position at your company and believe I would make significant contributions to
+your team.
+
+With over 12 years of experience, I offer senior-level web development skills and am an expert
+in frontend technologies. While much of my experience is as a frontend developer, I've also
+trained and advanced my back end development skills, making me a valuable and robust
+technical asset.
+
+Throughout my career, I've been dedicated to creating efficient, scalable, and maintainable
+code. My skills and personality lend themselves to excellent cross-team and inter-team
+communication, whether working with marketing and product departments or leading meetings
+with international teams.
+
+My work experience includes ecommerce, mobile banking software, higher education, and
+freelance projects. My analytical approach to problems, creative solutions, and technical growth
+has contributed to the overall performance of past teams. Consider the following highlights from
+my most recent position:
+
+● Refactored legacy applications/sites to mobile first responsive designs using modern
+frameworks such as Reactjs and Angular
+● Authored over 100 reusable React components to be utilized in customer-facing
+applications
+● Led efforts to improve Core Web Vitals, resulting in 25% decreased load time across
+multiple products
+
+I look forward to the new opportunities and challenges of this role, and I'm eager to share my
+skills and experience with a new team. Please feel free to contact me to schedule a time to talk.
+
+Thanks,
+Kevin
