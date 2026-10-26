@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { jobs } from '../../data/site';
+
+export function getStaticPaths() {
+  return jobs.map((job, i) => ({
+    params: { slug: job.slug },
+    props: { job, prev: jobs[(i - 1 + jobs.length) % jobs.length], next: jobs[(i + 1) % jobs.length] },
+  }));
+}
+const { job, prev, next } = Astro.props;
+const img = job.image;
+---
+<Base title={`${job.company} — ${job.role}`} description={job.overview}>
+  <article class="detail">
+    <div>
+      <span class="dates">{job.dates}</span>
+      <h1>{job.company}</h1>
+      <span class="role">{job.role}</span>
+    </div>
+    <p class="overview">{job.overview}</p>
+    {img && (
+      <div class="hero-img" role="img" aria-label={job.company}>
+        <div style={`background-image:url('${img.src}');background-size:${img.fit};background-position:${img.fit === 'contain' ? 'center' : 'top center'};padding:${img.pad ?? '0'}`}></div>
+      </div>
+    )}
+    <div class="detail-cols">
+      <section>
+        <h2 class="eyebrow">Highlights</h2>
+        <ul>{job.points.map((p) => <li>{p}</li>)}</ul>
+      </section>
+      <section>
+        <h2 class="eyebrow">Stack</h2>
+        <div class="tags" style="gap:6px">{job.stack.map((t) => <span class="chip">{t}</span>)}</div>
+      </section>
+    </div>
+    <div class="pager">
+      <a href={`/experience/${prev.slug}/`}>← {prev.company}</a>
+      <a href={`/experience/${next.slug}/`}>{next.company} →</a>
+    </div>
+  </article>
+</Base>

@@ -1,0 +1,80 @@
+---
+import '../styles/global.css';
+import { profile } from '../data/site';
+
+interface Props { title?: string; description?: string; }
+const { title, description = `${profile.name} — ${profile.title}. ${profile.tagline}.` } = Astro.props;
+const pageTitle = title ? `${title} · ${profile.name}` : `${profile.name} — ${profile.title}`;
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/#about', label: 'About' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#work', label: 'Selected work' },
+  { href: '/blog/', label: 'Writing', match: '/blog' },
+  { href: '/playground/', label: 'Playground', match: '/playground' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <link rel="alternate" type="application/rss+xml" title={profile.name} href="/rss.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      (function () {
+        var t;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        {profile.portrait
+          ? <img class="portrait" src={profile.portrait} alt={profile.name} />
+          : <div class="portrait" aria-hidden="true">portrait photo</div>}
+        <div style="display:grid;gap:6px">
+          <h1 class="name" style="font-size:clamp(40px,5vw,56px)"><a href="/">{profile.name}</a></h1>
+          <span class="title">{profile.title}</span>
+          <span class="subtitle">{profile.tagline}</span>
+        </div>
+        <nav class="side-nav" aria-label="Primary">
+          {nav.map((n) => (
+            <a href={n.href} aria-current={n.match && path.startsWith(n.match) ? 'page' : undefined}>{n.label}</a>
+          ))}
+        </nav>
+        <div class="btn-row">
+          <a class="btn btn-primary" href={profile.resume} download>Résumé ↓</a>
+          <a class="btn" href={`mailto:${profile.email}`}>Email</a>
+          <a class="btn" href={profile.github}>GitHub</a>
+          {profile.linkedin && <a class="btn" href={profile.linkedin}>LinkedIn</a>}
+        </div>
+      </aside>
+      <main class="main"><slot /></main>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
+    <script>
+      const btn = document.getElementById('theme-toggle')!;
+      const root = document.documentElement;
+      const label = () => (btn.textContent = root.dataset.theme === 'dark' ? '☀ Light' : '☾ Dark');
+      label();
+      btn.addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch {}
+        label();
+      });
+    </script>
+  </body>
+</html>

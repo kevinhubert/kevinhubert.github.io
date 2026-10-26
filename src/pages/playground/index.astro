@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Counter from '../../components/playground/Counter';
+---
+<Base title="Playground" description="Side projects and small interactive demos.">
+  <h1 class="h2" style="font-size:clamp(34px,4.5vw,48px);margin-bottom:8px">Playground</h1>
+  <p class="muted" style="margin:0 0 32px;max-width:62ch">Side projects and small experiments. Each demo is a React component hydrated only on this page.</p>
+  <div class="cards">
+    {/* To add a demo: create a component in src/components/playground/, import it above,
+        and add a card below. Use client:visible so React loads only when it scrolls into view. */}
+    <article class="card">
+      <h3>Counter</h3>
+      <p>The smallest possible React island, hydrated when scrolled into view.</p>
+      <Counter client:visible />
+    </article>
+  </div>
+</Base>
