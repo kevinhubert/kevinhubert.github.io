@@ -6,7 +6,7 @@ export const profile = {
   github: 'https://github.com/kevinhubert',
   linkedin: undefined as string | undefined,
   resume: '/files/Kevin-Hubert-Resume.pdf',
-  portrait: undefined as string | undefined,
+  portrait: '/images/portrait.jpg' as string | undefined,
   intro:
     "I've spent 15 years building React platforms and design systems. Now I spend most days teaching AI agents to build them",
   introEmphasis: 'well',

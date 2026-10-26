@@ -13,6 +13,9 @@ const img = job.image;
 ---
 <Base title={`${job.company} — ${job.role}`} description={job.overview}>
   <article class="detail">
+    <a class="detail-close" href="/#experience" aria-label="Close and return to experience">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </a>
     <div>
       <span class="dates">{job.dates}</span>
       <h1>{job.company}</h1>
@@ -40,3 +43,19 @@ const img = job.image;
     </div>
   </article>
 </Base>
+<script>
+  const card = document.querySelector<HTMLElement>('.detail');
+  const close = document.querySelector<HTMLAnchorElement>('.detail-close');
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let leaving = false;
+  const leave = () => {
+    if (!card || !close || leaving) return;
+    leaving = true;
+    try { sessionStorage.setItem('list-in', '1'); } catch {}
+    if (calm) { location.href = close.href; return; }
+    card.classList.add('closing');
+    card.addEventListener('animationend', () => { location.href = close.href; }, { once: true });
+  };
+  close?.addEventListener('click', (e) => { e.preventDefault(); leave(); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') leave(); });
+</script>

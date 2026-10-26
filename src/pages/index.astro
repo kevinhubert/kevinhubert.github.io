@@ -61,3 +61,11 @@ const posts = (await getCollection('blog', (p) => !p.data.draft))
     )}
   </div>
 </Base>
+<script>
+  try {
+    if (sessionStorage.getItem('list-in')) {
+      sessionStorage.removeItem('list-in');
+      document.querySelector('.stack-sections')?.classList.add('list-in');
+    }
+  } catch {}
+</script>
