@@ -44,6 +44,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
   display: flex; align-items: flex-end; padding: 12px; font-size: 11px; color: var(--muted);
   font-family: ui-monospace, monospace;
 }
+img.portrait { padding: 0; background: none; border: 1px solid var(--line); display: block; }
 .name { font-weight: 700; font-size: clamp(40px, 5vw, 56px); line-height: 1; margin: 0; }
 .name a { text-decoration: none; color: inherit; }
 .title { font-size: 18px; color: var(--accent); font-weight: 600; }
