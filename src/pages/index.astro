@@ -10,7 +10,7 @@ const posts = (await getCollection('blog', (p) => !p.data.draft))
 <Base>
   <div class="stack-sections">
     <section id="about" class="about">
-      <p class="lede">{profile.intro} <em>{profile.introEmphasis}</em>.</p>
+      <p class="lede"><em>{profile.introEmphasis}</em> {profile.intro}</p>
       <p class="muted">{profile.about}</p>
     </section>
 

@@ -7,11 +7,11 @@ export const profile = {
   linkedin: undefined as string | undefined,
   resume: '/files/Kevin-Hubert-Resume.pdf',
   portrait: '/images/portrait.jpg' as string | undefined,
+  introEmphasis: 'Frontend Architect',
   intro:
-    "I've spent 15 years building React platforms and design systems. Now I spend most days teaching AI agents to build them",
-  introEmphasis: 'well',
+    'with 15+ years of experience, spanning early single-page banking apps to leading the Next.js migration of Everlywell.com.',
   about:
-    'I orchestrate Claude Code, Cursor and MCP to ship full-stack features faster, and write the context, rules and skills that keep agent output production-grade. A philosophy degree taught me the part that matters most: say exactly what you mean, then check the work.',
+    'Today, my focus is building the architectural context and guardrails that allow AI agents to write and review frontend code alongside engineering teams. My background in philosophy proved to be ideal preparation for this shift: it gives me the framework to see the macro picture, translate complex systems into precise instructions for AI, and provide steady technical leadership as hands-on development evolves.',
 };
 
 export interface Job {
