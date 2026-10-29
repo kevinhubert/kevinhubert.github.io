@@ -1,0 +1,107 @@
+---
+interface Props { kind: 'review' | 'skills' | 'booking' | 'ds'; }
+const { kind } = Astro.props;
+const days = Array.from({ length: 12 }, (_, i) => i === 6);
+---
+<div class="shot" aria-hidden="true">
+  {kind === 'review' && (
+    <div class="review">
+      <div class="row"><span class="bar" style="width:34%;background:var(--ink)"></span><span class="mr">MR !482</span></div>
+      <div class="diff">
+        <div class="ln" style="color:var(--muted)">  const items = data.map(…)</div>
+        <div class="ln" style="background:color-mix(in oklch,var(--accent) 14%,transparent)">- useEffect(() =&gt; fetch(url))</div>
+        <div class="ln" style="background:color-mix(in oklch,oklch(0.7 0.12 150) 20%,transparent)">+ const q = useQuery(key, fn)</div>
+        <div class="comment">
+          <span class="who">● review-agent</span>
+          <span class="bar" style="width:92%;background:var(--line)"></span>
+          <span class="bar" style="width:64%;background:var(--line)"></span>
+        </div>
+      </div>
+    </div>
+  )}
+  {kind === 'skills' && (
+    <div class="term">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <span><span class="p">›</span> /kickoff EVW-2193</span>
+      <span style="opacity:.6">  ✓ read ticket · ✓ branch created</span>
+      <span><span class="p">›</span> /qa-plan</span>
+      <span style="opacity:.6">  ✓ 14 test cases written</span>
+      <span><span class="p">›</span> /ship <span class="cursor"></span></span>
+    </div>
+  )}
+  {kind === 'booking' && (
+    <div class="phones">
+      <div class="phone">
+        <span class="bar" style="width:70%;background:var(--ink)"></span>
+        <div class="cal">{days.map((on) => <span style={`background:var(--${on ? 'accent' : 'soft'})`}></span>)}</div>
+      </div>
+      <div class="phone">
+        <span class="bar" style="width:60%;background:var(--ink)"></span>
+        <span class="slot"></span>
+        <span class="slot" style="border-color:var(--accent);background:color-mix(in oklch,var(--accent) 18%,transparent)"></span>
+        <span class="slot"></span>
+      </div>
+      <div class="phone">
+        <span class="check">✓</span>
+        <span class="bar" style="width:80%;background:var(--ink)"></span>
+        <span class="bar" style="width:55%;background:var(--line)"></span>
+      </div>
+    </div>
+  )}
+  {kind === 'ds' && (
+    <div class="ds">
+      <div class="nav">
+        <span class="bar" style="width:80%;background:var(--ink)"></span>
+        <span class="bar" style="width:60%;background:var(--line)"></span>
+        <span class="bar" style="width:70%;background:var(--accent)"></span>
+        <span class="bar" style="width:50%;background:var(--line)"></span>
+        <span class="bar" style="width:65%;background:var(--line)"></span>
+      </div>
+      <div class="demo-grid">
+        <span style="height:20px;border-radius:6px;background:var(--accent)"></span>
+        <span style="height:20px;border-radius:6px;border:1.5px solid var(--accent)"></span>
+        <span class="input"><span class="bar" style="width:40%;background:var(--line)"></span></span>
+        <span class="toggle"><span class="pill"></span><span class="bar" style="width:50%;background:var(--line)"></span></span>
+        <span class="chips"><span>chip</span><span>chip</span></span>
+      </div>
+    </div>
+  )}
+</div>
+
+<style>
+  .shot { aspect-ratio: 16/10; position: relative; border-radius: 12px; overflow: hidden; background: var(--soft); }
+  .bar { display: block; height: 6px; border-radius: 3px; }
+
+  .review { position: absolute; inset: 0; padding: 14px; display: grid; grid-template-rows: auto 1fr; gap: 10px; font-family: ui-monospace, monospace; font-size: 10px; line-height: 1.5; }
+  .review .row { display: flex; gap: 8px; align-items: center; }
+  .review .row .bar { height: 7px; }
+  .mr { margin-left: auto; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: var(--bg); font-family: var(--font-body); font-weight: 600; }
+  .diff { border: 1px solid var(--line); border-radius: 8px; background: var(--bg); overflow: hidden; display: grid; align-content: start; }
+  .ln { padding: 3px 10px; white-space: pre; }
+  .comment { margin: 8px 10px; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); display: grid; gap: 5px; font-family: var(--font-body); }
+  .who { font-weight: 700; color: var(--accent); }
+
+  .term { position: absolute; inset: 0; background: oklch(0.22 0.015 50); color: oklch(0.92 0.01 70); padding: 14px 16px; font-family: ui-monospace, monospace; font-size: 11px; line-height: 1.7; display: grid; align-content: start; white-space: pre; }
+  .term .p { color: var(--accent); }
+  .dots { display: flex; gap: 5px; margin-bottom: 8px; }
+  .dots span { width: 8px; height: 8px; border-radius: 50%; background: oklch(0.5 0.02 50); }
+  .cursor { display: inline-block; width: 7px; height: 12px; background: currentColor; vertical-align: middle; }
+
+  .phones { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 5%; }
+  .phone { width: 26%; height: 88%; border-radius: 12px; border: 1.5px solid var(--line); background: var(--bg); padding: 8px 7px; display: grid; align-content: start; gap: 6px; }
+  .phone .bar { height: 5px; }
+  .cal { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-top: 4px; }
+  .cal span { aspect-ratio: 1; border-radius: 3px; }
+  .slot { display: block; height: 12px; border-radius: 4px; border: 1px solid var(--line); }
+  .check { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); margin: 10px auto 2px; display: flex; align-items: center; justify-content: center; color: var(--bg); font-size: 12px; font-weight: 700; }
+
+  .ds { position: absolute; inset: 0; display: grid; grid-template-columns: 22% 1fr; }
+  .nav { border-right: 1px solid var(--line); padding: 12px 10px; display: grid; align-content: start; gap: 7px; }
+  .nav .bar:first-child { height: 5px; }
+  .demo-grid { padding: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-content: center; }
+  .input { grid-column: 1/-1; height: 22px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); display: flex; align-items: center; padding: 0 8px; }
+  .toggle { display: flex; gap: 6px; align-items: center; }
+  .pill { width: 26px; height: 14px; border-radius: 999px; background: var(--accent); }
+  .chips { display: flex; gap: 6px; }
+  .chips span { padding: 2px 8px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-size: 9px; color: var(--muted); }
+</style>

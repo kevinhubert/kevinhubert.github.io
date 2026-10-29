@@ -94,24 +94,28 @@ export const jobs: Job[] = [
 export const work = [
   {
     title: 'Org-wide AI code review agents',
+    shot: 'review' as const,
     where: 'Everlywell · 2026',
     desc: 'Engineered the context, prompts and rules behind agents that review frontend merge requests and autofix accessibility issues — integrated with Jira and GitLab, hardened against prompt-trust and token-leak gaps.',
     tags: ['Claude', 'MCP', 'GitLab'],
   },
   {
     title: 'Claude Code skill library',
+    shot: 'skills' as const,
     where: 'Everlywell · 2026',
     desc: 'About ten reusable skills that automate the dev loop: ticket kickoff, QA test plans, staging deploys, test-data seeding and Storybook verification.',
     tags: ['Claude Code', 'Skills', 'DX'],
   },
   {
     title: 'EverlyCare telehealth booking',
+    shot: 'booking' as const,
     where: 'Everlywell · 2026',
     desc: 'Led the frontend for a greenfield React SPA in a new pnpm/Turbo monorepo — magic-link auth, time-zone-safe scheduling, English/Spanish — shipped ahead of the backend against stubs.',
     tags: ['React', 'Turborepo', 'i18n'],
   },
   {
     title: 'Metadata-driven design system',
+    shot: 'ds' as const,
     where: 'Findhelp.org · 2024–26',
     desc: 'An MUI-based component library with metadata-driven fields that significantly cut UI build time for new social-services features.',
     tags: ['MUI', 'Remix', 'Storybook'],

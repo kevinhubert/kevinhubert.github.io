@@ -11,7 +11,7 @@ const posts = (await getCollection('blog', (p) => !p.data.draft)).sort(
   {posts.map((p) => (
     <a class="post-row" href={`/blog/${p.id}/`}>
       <span class="t">{p.data.title}</span>
-      <span class="m">{p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+      <span class="m">{p.data.date.toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric' })}</span>
     </a>
   ))}
 </Base>
