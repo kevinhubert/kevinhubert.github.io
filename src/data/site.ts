@@ -4,7 +4,7 @@ export const profile = {
   tagline: 'Full-stack, frontend-first · Georgetown, TX',
   email: 'iamkevinhubert@gmail.com',
   github: 'https://github.com/kevinhubert',
-  linkedin: undefined as string | undefined,
+  linkedin: 'https://www.linkedin.com/in/kevin-hubert/',
   resume: '/files/Kevin-Hubert-Resume.pdf',
   portrait: '/images/portrait.jpg' as string | undefined,
   introEmphasis: 'Frontend Architect',
