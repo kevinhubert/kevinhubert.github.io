@@ -1,7 +1,10 @@
 ---
-interface Props { kind: 'review' | 'skills' | 'booking' | 'ds'; }
+interface Props { kind: 'review' | 'gridshift' | 'booking' | 'ds'; }
 const { kind } = Astro.props;
 const days = Array.from({ length: 12 }, (_, i) => i === 6);
+const curve = [40.6, 41.5, 42.5, 42.9, 42.0, 39.2, 33.2, 26.8, 29.5, 35.1, 37.8, 36.0, 31.8, 19.4, 4.6, 15.7, 27.7, 31.4, 34.6, 36.9];
+const line = curve.map((y, i) => `${i ? 'L' : 'M'}${((i * 200) / (curve.length - 1)).toFixed(1)} ${y}`).join(' ');
+const heat = [[0, .85], [0, .6], [1, .7], [0, .4], [0, .55], [1, .9], [0, .35], [0, .65]];
 ---
 <div class="shot" aria-hidden="true">
   {kind === 'review' && (
@@ -19,14 +22,29 @@ const days = Array.from({ length: 12 }, (_, i) => i === 6);
       </div>
     </div>
   )}
-  {kind === 'skills' && (
-    <div class="term">
-      <div class="dots"><span></span><span></span><span></span></div>
-      <span><span class="p">›</span> /kickoff EVW-2193</span>
-      <span style="opacity:.6">  ✓ read ticket · ✓ branch created</span>
-      <span><span class="p">›</span> /qa-plan</span>
-      <span style="opacity:.6">  ✓ 14 test cases written</span>
-      <span><span class="p">›</span> /ship <span class="cursor"></span></span>
+  {kind === 'gridshift' && (
+    <div class="gs">
+      <div class="gs-head">
+        <span class="gs-name">GridShift</span>
+        <span class="gs-live"><span class="dot"></span>LIVE · HB_NORTH</span>
+        <span class="gs-price">$31.42<span class="unit">/MWh</span></span>
+      </div>
+      <div class="gs-body">
+        <div class="panel gs-chart">
+          <span class="cap">Real-time price · 24h</span>
+          <svg viewBox="0 0 200 60" preserveAspectRatio="none">
+            <rect x="0" y="0" width="60" height="60" fill="oklch(0.68 0.14 150 / 0.12)" />
+            <path d={`${line} L200 60 L0 60 Z`} fill="color-mix(in oklch, var(--accent) 14%, transparent)" />
+            <path d={line} fill="none" stroke="var(--accent)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+          </svg>
+        </div>
+        <div class="gs-side">
+          <div class="panel stat"><span class="cap">Cheapest window</span><span class="val">1–5 AM</span></div>
+          <div class="panel heat">
+            {heat.map(([accent, o]) => <span style={`background:${accent ? 'var(--accent)' : 'oklch(0.68 0.14 150)'};opacity:${o}`}></span>)}
+          </div>
+        </div>
+      </div>
     </div>
   )}
   {kind === 'booking' && (
@@ -81,11 +99,24 @@ const days = Array.from({ length: 12 }, (_, i) => i === 6);
   .comment { margin: 8px 10px; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); display: grid; gap: 5px; font-family: var(--font-body); }
   .who { font-weight: 700; color: var(--accent); }
 
-  .term { position: absolute; inset: 0; background: oklch(0.22 0.015 50); color: oklch(0.92 0.01 70); padding: 14px 16px; font-family: ui-monospace, monospace; font-size: 11px; line-height: 1.7; display: grid; align-content: start; white-space: pre; }
-  .term .p { color: var(--accent); }
-  .dots { display: flex; gap: 5px; margin-bottom: 8px; }
-  .dots span { width: 8px; height: 8px; border-radius: 50%; background: oklch(0.5 0.02 50); }
-  .cursor { display: inline-block; width: 7px; height: 12px; background: currentColor; vertical-align: middle; }
+  .gs { position: absolute; inset: 0; padding: 12px 14px; display: grid; grid-template-rows: auto 1fr; gap: 8px; font-family: var(--font-body); }
+  .gs-head { display: flex; align-items: center; gap: 8px; }
+  .gs-name { font-weight: 700; font-size: 12px; color: var(--ink); }
+  .gs-live { display: flex; align-items: center; gap: 4px; font-size: 9px; color: var(--muted); }
+  .gs-live .dot { width: 6px; height: 6px; border-radius: 50%; background: oklch(0.68 0.14 150); }
+  .gs-price { margin-left: auto; font-family: ui-monospace, monospace; font-size: 13px; font-weight: 600; color: var(--accent); }
+  .gs-price .unit { font-size: 9px; color: var(--muted); font-weight: 400; }
+  .gs-body { display: grid; grid-template-columns: 1fr 32%; gap: 8px; min-height: 0; }
+  .panel { border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+  .gs-chart { padding: 8px; display: grid; grid-template-rows: auto 1fr; gap: 4px; min-height: 0; }
+  .gs-chart svg { width: 100%; height: 100%; overflow: visible; }
+  .cap { font-size: 9px; color: var(--muted); }
+  .gs-side { display: grid; gap: 6px; align-content: start; }
+  .stat { padding: 6px 8px; display: grid; gap: 2px; }
+  .stat .cap { font-size: 8px; }
+  .stat .val { font-size: 11px; font-weight: 600; color: oklch(0.55 0.13 150); }
+  .heat { padding: 6px 8px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+  .heat span { aspect-ratio: 1; border-radius: 2px; }
 
   .phones { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 5%; }
   .phone { width: 26%; height: 88%; border-radius: 12px; border: 1.5px solid var(--line); background: var(--bg); padding: 8px 7px; display: grid; align-content: start; gap: 6px; }

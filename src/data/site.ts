@@ -91,31 +91,43 @@ export const jobs: Job[] = [
   },
 ];
 
-export const work = [
+export interface WorkItem {
+  title: string;
+  shot: 'review' | 'gridshift' | 'booking' | 'ds';
+  where: string;
+  desc: string;
+  tags: string[];
+  url?: string;
+  urlLabel?: string;
+}
+
+export const work: WorkItem[] = [
   {
     title: 'Org-wide AI code review agents',
-    shot: 'review' as const,
+    shot: 'review',
     where: 'Everlywell · 2026',
     desc: 'Engineered the context, prompts and rules behind agents that review frontend merge requests and autofix accessibility issues — integrated with Jira and GitLab, hardened against prompt-trust and token-leak gaps.',
     tags: ['Claude', 'MCP', 'GitLab'],
   },
   {
-    title: 'Claude Code skill library',
-    shot: 'skills' as const,
-    where: 'Everlywell · 2026',
-    desc: 'About ten reusable skills that automate the dev loop: ticket kickoff, QA test plans, staging deploys, test-data seeding and Storybook verification.',
-    tags: ['Claude Code', 'Skills', 'DX'],
+    title: 'GridShift',
+    shot: 'gridshift',
+    where: 'Side project · 2026',
+    desc: 'A free dashboard for ERCOT wholesale power prices, so you can see when electricity is cheap and time flexible loads. Scrapes the public real-time settlement point table every 15 minutes, stores history in Supabase and serves it through edge functions to a Vite + React UI.',
+    tags: ['React', 'Vite', 'Supabase', 'Tailwind'],
+    url: 'https://gridshift.live/',
+    urlLabel: 'gridshift.live',
   },
   {
     title: 'EverlyCare telehealth booking',
-    shot: 'booking' as const,
+    shot: 'booking',
     where: 'Everlywell · 2026',
     desc: 'Led the frontend for a greenfield React SPA in a new pnpm/Turbo monorepo — magic-link auth, time-zone-safe scheduling, English/Spanish — shipped ahead of the backend against stubs.',
     tags: ['React', 'Turborepo', 'i18n'],
   },
   {
     title: 'Metadata-driven design system',
-    shot: 'ds' as const,
+    shot: 'ds',
     where: 'Findhelp.org · 2024–26',
     desc: 'An MUI-based component library with metadata-driven fields that significantly cut UI build time for new social-services features.',
     tags: ['MUI', 'Remix', 'Storybook'],

@@ -33,6 +33,7 @@ import { profile, jobs, work, toolbox } from '../data/site';
             <span class="where">{w.where}</span>
             <h3>{w.title}</h3>
             <p>{w.desc}</p>
+            {w.url && <a class="link" href={w.url} target="_blank" rel="noopener">{w.urlLabel} <span aria-hidden="true">↗</span></a>}
             <div class="tags">{w.tags.map((t) => <span class="chip">{t}</span>)}</div>
           </article>
         ))}

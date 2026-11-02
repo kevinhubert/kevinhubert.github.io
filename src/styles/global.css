@@ -100,6 +100,8 @@ img.portrait { padding: 0; background: none; border: 1px solid var(--line); disp
 .card .where { font-size: 13px; color: var(--accent); font-weight: 600; }
 .card h3 { margin: 0; font-size: 19px; font-weight: 700; }
 .card p { margin: 0; color: var(--muted); font-size: 15px; text-wrap: pretty; }
+.card .link { justify-self: start; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
+.card .link:hover { text-decoration: underline; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip { font-size: 14px; padding: 6px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); }
 .tags .chip { font-size: 12px; padding: 2px 10px; background: var(--soft); border: 0; }
