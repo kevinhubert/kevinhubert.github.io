@@ -1,5 +1,5 @@
 ---
-interface Props { kind: 'review' | 'gridshift' | 'booking' | 'ds'; }
+interface Props { kind: 'review' | 'gridshift' | 'claw' | 'booking' | 'ds'; }
 const { kind } = Astro.props;
 const days = Array.from({ length: 12 }, (_, i) => i === 6);
 const curve = [40.6, 41.5, 42.5, 42.9, 42.0, 39.2, 33.2, 26.8, 29.5, 35.1, 37.8, 36.0, 31.8, 19.4, 4.6, 15.7, 27.7, 31.4, 34.6, 36.9];
@@ -45,6 +45,19 @@ const heat = [[0, .85], [0, .6], [1, .7], [0, .4], [0, .55], [1, .9], [0, .35], 
           </div>
         </div>
       </div>
+    </div>
+  )}
+  {kind === 'claw' && (
+    <div class="claw">
+      <div class="status"><span class="dot"></span>3 agents online · tailnet</div>
+      <div class="flow">
+        <div class="node"><span class="box">⌁</span><span class="lbl">Anywhere</span></div>
+        <div class="wire"><span class="tag">https</span><span class="dash"></span></div>
+        <div class="node"><span class="box">⇄</span><span class="lbl">Proxy</span></div>
+        <div class="wire"><span class="tag">tailscale</span><span class="dash"></span></div>
+        <div class="node"><span class="box on">❯_</span><span class="lbl">Home rig</span></div>
+      </div>
+      <div class="feed"><span class="who">agent-02</span><span>pushed 3 commits → feat/hooks</span></div>
     </div>
   )}
   {kind === 'booking' && (
@@ -117,6 +130,20 @@ const heat = [[0, .85], [0, .6], [1, .7], [0, .4], [0, .55], [1, .9], [0, .35], 
   .stat .val { font-size: 11px; font-weight: 600; color: oklch(0.55 0.13 150); }
   .heat { padding: 6px 8px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
   .heat span { aspect-ratio: 1; border-radius: 2px; }
+
+  .claw { position: absolute; inset: 0; padding: 12px 14px; display: grid; grid-template-rows: auto 1fr auto; gap: 8px; font-family: var(--font-body); }
+  .claw .status { display: flex; align-items: center; gap: 6px; font-size: 9px; color: var(--muted); }
+  .claw .dot { width: 6px; height: 6px; border-radius: 50%; background: oklch(0.68 0.14 150); }
+  .flow { display: grid; grid-template-columns: auto 1fr auto 1fr auto; align-items: center; gap: 6px; }
+  .node { display: grid; gap: 3px; justify-items: center; text-align: center; }
+  .node .box { width: 44px; height: 44px; border-radius: 11px; border: 1.5px solid var(--line); background: var(--bg); display: flex; align-items: center; justify-content: center; font-family: ui-monospace, monospace; font-size: 14px; color: var(--ink); }
+  .node .box.on { border-color: var(--accent); background: color-mix(in oklch, var(--accent) 14%, var(--bg)); color: var(--accent); }
+  .node .lbl { font-size: 9px; font-weight: 600; color: var(--ink); }
+  .claw .wire { display: grid; gap: 3px; justify-items: center; margin-bottom: 14px; }
+  .claw .tag { font-family: ui-monospace, monospace; font-size: 8px; color: var(--muted); }
+  .claw .dash { display: block; width: 100%; border-top: 1.5px dashed var(--accent); }
+  .feed { border: 1px solid var(--line); border-radius: 7px; background: var(--bg); padding: 5px 8px; font-family: ui-monospace, monospace; font-size: 9px; color: var(--muted); display: flex; gap: 6px; }
+  .feed .who { color: var(--accent); font-weight: normal; }
 
   .phones { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 5%; }
   .phone { width: 26%; height: 88%; border-radius: 12px; border: 1.5px solid var(--line); background: var(--bg); padding: 8px 7px; display: grid; align-content: start; gap: 6px; }

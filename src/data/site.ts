@@ -93,7 +93,7 @@ export const jobs: Job[] = [
 
 export interface WorkItem {
   title: string;
-  shot: 'review' | 'gridshift' | 'booking' | 'ds';
+  shot: 'review' | 'gridshift' | 'claw' | 'booking' | 'ds';
   where: string;
   desc: string;
   tags: string[];
@@ -117,6 +117,15 @@ export const work: WorkItem[] = [
     tags: ['React', 'Vite', 'Supabase', 'Tailwind'],
     url: 'https://gridshift.live/',
     urlLabel: 'gridshift.live',
+  },
+  {
+    title: 'Robin-UI',
+    shot: 'claw',
+    where: 'Side project · 2026',
+    desc: 'A custom OpenClaw web client, built before the official one existed. I forked a community project to reach hooks and endpoints Discord and Slack never exposed, ran my home network as the agent harness over Tailscale, and put a proxy in front so I could drive local agents and push code from anywhere.',
+    tags: ['React', 'Tailscale', 'Agents'],
+    url: 'https://github.com/kevinhubert/robin-ui',
+    urlLabel: 'github.com/kevinhubert/robin-ui',
   },
   {
     title: 'EverlyCare telehealth booking',
