@@ -104,13 +104,6 @@ img.portrait { padding: 0; background: none; border: 1px solid var(--line); disp
 .chip { font-size: 14px; padding: 6px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); }
 .tags .chip { font-size: 12px; padding: 2px 10px; background: var(--soft); border: 0; }
 
-.post-row {
-  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline;
-  padding: 14px 0; border-top: 1px solid var(--line); text-decoration: none;
-}
-.post-row .t { font-weight: 600; font-size: 17px; }
-.post-row .m { font-size: 14px; color: var(--muted); }
-
 .detail {
   display: grid; gap: 32px; padding: clamp(24px, 4vw, 48px); border-radius: 28px;
   background: var(--card); border: 1px solid var(--line); align-content: start; position: relative;

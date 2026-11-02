@@ -1,12 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import WorkShot from '../components/WorkShot.astro';
 import { profile, jobs, work, toolbox } from '../data/site';
-
-const posts = (await getCollection('blog', (p) => !p.data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 5);
 ---
 <Base>
   <div class="stack-sections">
@@ -49,18 +44,6 @@ const posts = (await getCollection('blog', (p) => !p.data.draft))
       <div class="tags" style="gap:8px">{toolbox.map((c) => <span class="chip">{c}</span>)}</div>
     </section>
 
-    {posts.length > 0 && (
-      <section id="writing">
-        <h2 class="h2">Writing</h2>
-        {posts.map((p) => (
-          <a class="post-row" href={`/blog/${p.id}/`}>
-            <span class="t">{p.data.title}</span>
-            <span class="m">{p.data.date.toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric' })}</span>
-          </a>
-        ))}
-        <a class="post-row" href="/blog/"><span class="more">All posts →</span></a>
-      </section>
-    )}
   </div>
 </Base>
 <script>

@@ -10,7 +10,6 @@ const nav = [
   { href: '/#about', label: 'About' },
   { href: '/#experience', label: 'Experience' },
   { href: '/#work', label: 'Selected work' },
-  { href: '/blog/', label: 'Writing', match: '/blog' },
   { href: '/playground/', label: 'Playground', match: '/playground' },
 ];
 ---
@@ -22,7 +21,6 @@ const nav = [
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={new URL(path, Astro.site)} />
-    <link rel="alternate" type="application/rss+xml" title={profile.name} href="/rss.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
